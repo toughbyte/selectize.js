@@ -2,7 +2,7 @@ Selectize.define('deselect_options_via_dropdown', function () {
 	var option, self = this;
 
 	function onOptionDeselect(e) {
-		option = e[0].currentTarget;
+		option = e.currentTarget;
 		option.classList.remove('selected');
 		self.removeItem(option.dataset.value)
 	}
@@ -13,14 +13,14 @@ Selectize.define('deselect_options_via_dropdown', function () {
 			this.settings.hideSelected = false;
 			original.apply(this, arguments);
 
-			self.$dropdown.off('mouseup click', '[data-selectable]', this.onOptionSelect);
+			self.$dropdown.off('mouseup click', '[data-selectable]');
 
-			self.$dropdown.on('mouseup click', '[data-selectable]', function () {
-				// if (arguments[0].currentTarget.classList.contains('selected')) {
-				// 	onOptionDeselect(arguments);
-				// } else {
-					self.onOptionSelect(arguments);
-				// }
+			self.$dropdown.on('click', '[data-selectable]', function (e) {
+				if (e.currentTarget.classList.contains('selected')) {
+					onOptionDeselect(e);
+				} else {
+					self.onOptionSelect(e);
+				}
 			});
 		};
 	})();
