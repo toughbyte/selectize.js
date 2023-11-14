@@ -3230,8 +3230,8 @@ Selectize.define('dropdown_buttons', function (options) {
   dropdown_buttons =
 		'<div class="d-flex justify-content-center">' +
 			`<div class="control-buttons btn-group ${options.buttonGroupSize} w-100 my-2 mx-3">` +
-				`<button type="button" class="${options.buttonClass}" id="select-all">All</button>` +
-				`<button type="button" class="${options.buttonClass}" id="select-none">None</button>` +
+				`<button type="button" class="${options.buttonsClass}" id="select-all">All</button>` +
+				`<button type="button" class="${options.buttonsClass}" id="select-none">None</button>` +
 			'</div>' +
 		'</div>'
 
