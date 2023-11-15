@@ -3140,7 +3140,7 @@ Selectize.define('deselect_options_via_dropdown', function () {
 
 	this.onOptionSelect = (function () {
 		var original = self.onOptionSelect;
-		return function (e) {
+		return function () {
 			option = arguments[0].currentTarget[0] || arguments[0].currentTarget;
 			if (option.classList.contains('selected')) {
 				option.classList.remove('selected');
