@@ -14,7 +14,7 @@ Selectize.define('dropdown_buttons', function (options) {
 	function selectAllOptions() {
 		$.each(self.options, function (i, option) {
 			value = option.value.toString();
-			if (!self.items.includes(value)) self.addItem(option.value);
+			if (!self.items.includes(value)) self.addItem(value);
 		});
 
 		self.lastQuery = null;
