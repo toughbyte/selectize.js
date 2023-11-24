@@ -13,7 +13,7 @@ Selectize.define('dropdown_buttons', function (options) {
 
 	function selectAllOptions() {
 		$.each(self.options, function (i, option) {
-			if (self.items.indexOf(option.value) === -1) self.addItem(option.value);
+			if (!self.items.includes(option.value.toString())) self.addItem(option.value);
 		});
 
 		self.lastQuery = null;
