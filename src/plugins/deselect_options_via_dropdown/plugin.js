@@ -25,7 +25,7 @@ Selectize.define('deselect_options_via_dropdown', function () {
 	this.onOptionSelect = (function () {
 		var original = self.onOptionSelect;
 		return function () {
-			// The function could be called with the diferent types of arguments.
+			// The function could be called with the different types of arguments.
 			option = arguments[0].currentTarget[0] || arguments[0].currentTarget;
 
 			if (option.classList.contains('selected')) {
