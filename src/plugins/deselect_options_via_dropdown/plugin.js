@@ -1,3 +1,13 @@
+// This plugin allows you to deselect selected options via the dropdown menu.
+// You can use mouse click or enter key to deselect selected options.
+// For the correct work we automatically disabled the `hideSelected` option.
+// This plugin does not have any options.
+
+// An example of usage:
+// 	$('selector').selectize({
+// 		plugins: ['deselect_options_via_dropdown']
+// 	});
+
 Selectize.define('deselect_options_via_dropdown', function () {
 	var option, self = this;
 
