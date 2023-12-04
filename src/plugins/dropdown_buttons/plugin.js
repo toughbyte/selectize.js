@@ -71,10 +71,12 @@ Selectize.define('dropdown_buttons', function (options) {
 
 			if (self.isLocked) return;
 
+			// Make the dropdown menu visible.
 			self.isOpen = true;
 			self.refreshState();
 			self.$dropdown.css({display: 'block'});
 
+			// Check if there are no options in the dropdown menu.
 			if (!self.$activeOption) {
 				self.$dropdown_content.css({display: 'none'});
 				self.$dropdown_buttons.removeClass('border-bottom');

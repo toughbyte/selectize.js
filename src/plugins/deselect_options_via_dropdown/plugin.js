@@ -17,7 +17,7 @@ Selectize.define('deselect_options_via_dropdown', function () {
 			this.settings.hideSelected = false;
 			original.apply(this, arguments);
 
-			// remove double event to keep only click event.
+			// Remove the double event to keep only the click event.
 			self.$dropdown.off('mouseup', '[data-selectable]');
 		};
 	})();
@@ -25,7 +25,9 @@ Selectize.define('deselect_options_via_dropdown', function () {
 	this.onOptionSelect = (function () {
 		var original = self.onOptionSelect;
 		return function () {
+			// The function could be called with the diferent types of arguments.
 			option = arguments[0].currentTarget[0] || arguments[0].currentTarget;
+
 			if (option.classList.contains('selected')) {
 				option.classList.remove('selected');
 				self.removeItem(option.dataset.value)
