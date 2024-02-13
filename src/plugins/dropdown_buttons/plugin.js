@@ -17,8 +17,14 @@
 Selectize.define('dropdown_buttons', function (options) {
 	var noneOption, dropdownButtons, allButton, noneButton, value, self = this;
 
+	// We can not remove all selected values and keep the disabled ones in one change event.
+	// So we remove all selected values and add the disabled ones again.
 	function selectNoneOptions() {
+		const alreadySelectedAndDisabledItems = self.items.filter(item => {
+			return self.options[item].disabled;
+		})
 		self.clear();
+		self.addItems(alreadySelectedAndDisabledItems);
 		self.refreshOptions(true);
 	}
 

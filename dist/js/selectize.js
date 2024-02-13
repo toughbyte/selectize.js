@@ -3214,7 +3214,11 @@ Selectize.define('dropdown_buttons', function (options) {
 	var noneOption, dropdownButtons, allButton, noneButton, value, self = this;
 
 	function selectNoneOptions() {
+		const alreadySelectedAndDisabledItems = self.items.filter(item => {
+			return self.options[item].disabled;
+		})
 		self.clear();
+		self.addItems(alreadySelectedAndDisabledItems);
 		self.refreshOptions(true);
 	}
 
