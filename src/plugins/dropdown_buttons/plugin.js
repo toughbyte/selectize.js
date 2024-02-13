@@ -23,12 +23,14 @@ Selectize.define('dropdown_buttons', function (options) {
 	}
 
 	function selectAllOptions() {
-		$.each(self.options, function (i, option) {
-			if (option.disabled) return;
+		const values =
+			Object.values(self.options).filter(option => {
+				const value = option.value.toString();
 
-			value = option.value.toString();
-			if (!self.items.includes(value)) self.addItem(value);
-		});
+				return !(self.items.includes(value) || option.disabled);
+			}).map(option => option.value);
+
+		self.addItems(values);
 
 		self.lastQuery = null;
 		self.setTextboxValue('');
