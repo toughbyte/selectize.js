@@ -17,18 +17,26 @@
 Selectize.define('dropdown_buttons', function (options) {
 	var noneOption, dropdownButtons, allButton, noneButton, value, self = this;
 
+	// We can not remove all selected values and keep the disabled ones in one change event.
+	// So we remove all selected values and add the disabled ones again.
 	function selectNoneOptions() {
+		const alreadySelectedAndDisabledItems = self.items.filter(item => {
+			return self.options[item].disabled;
+		})
 		self.clear();
+		self.addItems(alreadySelectedAndDisabledItems);
 		self.refreshOptions(true);
 	}
 
 	function selectAllOptions() {
-		$.each(self.options, function (i, option) {
-			if (option.disabled) return;
+		const values =
+			Object.values(self.options).filter(option => {
+				const value = option.value.toString();
 
-			value = option.value.toString();
-			if (!self.items.includes(value)) self.addItem(value);
-		});
+				return !(self.items.includes(value) || option.disabled);
+			}).map(option => option.value);
+
+		self.addItems(values);
 
 		self.lastQuery = null;
 		self.setTextboxValue('');
