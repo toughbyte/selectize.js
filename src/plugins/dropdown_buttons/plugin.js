@@ -23,7 +23,7 @@ Selectize.define('dropdown_buttons', function (options) {
 		const alreadySelectedAndDisabledItems = self.items.filter(item => {
 			return self.options[item].disabled;
 		})
-		self.clear();
+		self.clear({silent: true});
 		self.addItems(alreadySelectedAndDisabledItems);
 		self.refreshOptions(true);
 	}
