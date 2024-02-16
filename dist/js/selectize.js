@@ -3340,11 +3340,13 @@ Selectize.define('handle_disabled_options', function (options) {
 			var index, option;
 			if (e.keyCode === KEY_BACKSPACE) {
 				index = self.caretPos - 1;
-				option = this.options[this.items[index]];
-				if (index >= 0 && option.disabled) {
-					e.preventDefault();
-					return;
-				}
+			} else if (e.keyCode === KEY_DELETE) {
+				index = self.caretPos;
+			}
+			option = this.options[this.items[index]];
+			if (option && option.disabled) {
+				e.preventDefault();
+				return;
 			}
 			return original.apply(this, arguments);
 		};
