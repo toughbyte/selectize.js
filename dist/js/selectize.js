@@ -3331,6 +3331,51 @@ Selectize.define('dropdown_header', function(options) {
 
 });
 
+Selectize.define('handle_disabled_options', function (options) {
+  var self = this;
+
+  self.onKeyDown = (function() {
+		var original = self.onKeyDown;
+		return function(e) {
+			var index, option;
+			if (e.keyCode === KEY_BACKSPACE) {
+				index = self.caretPos - 1;
+			} else if (e.keyCode === KEY_DELETE) {
+				index = self.caretPos;
+			}
+			option = this.options[this.items[index]];
+			if (option && option.disabled) {
+				e.preventDefault();
+				return;
+			}
+			return original.apply(this, arguments);
+		};
+	})();
+
+	self.search = (function() {
+		var original = self.search;
+		return function() {
+			var results = original.apply(this, arguments);
+			results.items.sort(function(item1, item2) {
+				return (self.options[item1.id].disabled && self.items.includes(item1.id) ? -1 : 1) -
+							 (self.options[item2.id].disabled && self.items.includes(item2.id) ? -1 : 1);
+			});
+			return results;
+		};
+	})();
+
+	self.addItems = (function() {
+		var original = self.addItems;
+		return function() {
+			arguments[0].sort(function(item1, item2) {
+				return (self.options[item1].disabled ? -1 : 1) -
+							 (self.options[item2].disabled ? -1 : 1);
+			});
+			return original.apply(this, arguments);
+		};
+	})();
+})
+
 Selectize.define('optgroup_columns', function(options) {
 	var self = this;
 
