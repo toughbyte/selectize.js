@@ -3232,6 +3232,7 @@ Selectize.define('dropdown_buttons', function (options) {
 			}).map(option => option.value);
 
 		self.addItems(values);
+		self.focus();
 
 		self.lastQuery = null;
 		self.setTextboxValue('');
