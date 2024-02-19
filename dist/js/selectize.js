@@ -3220,6 +3220,7 @@ Selectize.define('dropdown_buttons', function (options) {
 		self.clear({silent: true});
 		self.addItems(alreadySelectedAndDisabledItems);
 		self.refreshOptions(true);
+		self.$input.trigger('change');
 	}
 
 	function selectAllOptions() {
