@@ -3211,14 +3211,17 @@ Selectize.define('drag_drop', function(options) {
 });
 
 Selectize.define('dropdown_buttons', function (options) {
-	var noneOption, dropdownButtons, allButton, noneButton, value, self = this;
+	var dropdownButtons, allButton, noneButton, self = this;
 
 	function selectNoneOptions() {
 		const alreadySelectedAndDisabledItems = self.items.filter(item => {
 			return self.options[item].disabled;
 		})
 		self.clear({silent: true});
+
 		self.addItems(alreadySelectedAndDisabledItems);
+		self.focus();
+
 		self.refreshOptions(true);
 		self.$input.trigger('change');
 	}
