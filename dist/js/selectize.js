@@ -3214,16 +3214,20 @@ Selectize.define('dropdown_buttons', function (options) {
 	var dropdownButtons, allButton, noneButton, self = this;
 
 	function selectNoneOptions() {
+		if (self.items.length === 0) return;
+
 		const alreadySelectedAndDisabledItems = self.items.filter(item => {
 			return self.options[item].disabled;
 		})
+		if (self.items.length === alreadySelectedAndDisabledItems.length) return;
+
 		self.clear({silent: true});
 
 		self.addItems(alreadySelectedAndDisabledItems);
 		self.focus();
 
 		self.refreshOptions(true);
-		self.$input.trigger('change');
+		if (alreadySelectedAndDisabledItems.length === 0) self.$input.trigger('change');
 	}
 
 	function selectAllOptions() {
