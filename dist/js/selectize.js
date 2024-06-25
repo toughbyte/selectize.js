@@ -3218,15 +3218,15 @@ Selectize.define('dropdown_buttons', function (options) {
 
 		const alreadySelectedAndDisabledItems = self.items.filter(item => {
 			return self.options[item].disabled;
-		})
+		});
 		if (self.items.length === alreadySelectedAndDisabledItems.length) return;
 
-		self.clear({silent: true});
-
-		self.addItems(alreadySelectedAndDisabledItems);
+		self.items
+			.filter(item => !alreadySelectedAndDisabledItems.includes(item))
+			.forEach(item => self.removeItem(item, true));
 		self.focus();
 
-		self.refreshOptions(true);
+		self.refreshOptions();
 		if (alreadySelectedAndDisabledItems.length === 0) self.$input.trigger('change');
 	}
 
@@ -3262,7 +3262,7 @@ Selectize.define('dropdown_buttons', function (options) {
 
 	if (!allButton && !noneButton) return;
 
-  dropdownButtons =
+	dropdownButtons =
 		'<div class="d-flex justify-content-center">' +
 			`<div class="control-buttons btn-group ${options.buttonGroupSize} w-100 my-2 mx-3">` +
 				 (allButton || '') +
