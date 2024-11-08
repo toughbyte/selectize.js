@@ -339,7 +339,9 @@ $select-spinner-border-color: $select-color-border;
   &.input-active input:not(:read-only) {
     cursor: text;
   }
+}
 
+.#{$selectize}-control .#{$selectize}-input {
   &:not(.no-arrow):after {
     content: " ";
     display: block;
