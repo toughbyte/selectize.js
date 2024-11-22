@@ -1,6 +1,6 @@
 // This plugin adds a search kbd icon to the right side of the selectize input.
 
-Selectize.define('search_icons', function(options) {
+Selectize.define('search_icon', function(options) {
 	var searchIcon;
 	var self = this;
 

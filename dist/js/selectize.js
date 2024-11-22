@@ -3580,7 +3580,7 @@ Selectize.define('restore_on_backspace', function(options) {
 	})();
 });
 
-Selectize.define('search_icons', function(options) {
+Selectize.define('search_icon', function(options) {
 	var searchIcon;
 	var self = this;
 
