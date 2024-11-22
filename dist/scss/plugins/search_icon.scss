@@ -1,0 +1,11 @@
+.#{$selectize}-control.plugin-search_icon {
+  .selectize-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:after {
+      content: none;
+    }
+  }
+}
