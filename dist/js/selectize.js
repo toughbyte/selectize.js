@@ -3580,6 +3580,21 @@ Selectize.define('restore_on_backspace', function(options) {
 	})();
 });
 
+Selectize.define('search_icon', function(options) {
+	var searchIcon;
+	var self = this;
+
+	searchIcon = '<kbd>S</kbd>';
+
+	self.setup = (function() {
+		var original = self.setup;
+		return function() {
+			original.apply(self, arguments);
+			self.$control.append(searchIcon);
+		};
+	})();
+});
+
 Selectize.define('select_on_focus', function(options) {
 	var self = this;
 
