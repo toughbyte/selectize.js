@@ -1,6 +1,10 @@
 .#{$selectize}-control.plugin-search_icon {
+  &.loading kbd {
+    display: none;
+  }
+
   .selectize-input {
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
     align-items: center;
 
